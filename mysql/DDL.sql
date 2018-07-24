@@ -67,16 +67,29 @@ create table if not exists ejemplo2.tabla2(
     primary key (tipo_documento, numero_documento)
 );
 
--- index unique
+-- index unique simple
 
-create table if not exists ejemplo2.tabla3(
-	tipo_documento varchar(10) ,
-    numero_documento varchar(50),
+create table if not exists ejemplo2.cliente(
+	tipo_documento varchar(10) , -- llave semantica
+    numero_documento varchar(50), -- llave semantica
     nombre varchar(100),
     correo_electronico varchar(100),
     UNIQUE INDEX correo_idx (correo_electronico ASC),
     primary key (tipo_documento, numero_documento)
 );
+
+-- index unique compuesto
+
+create table if not exists ejemplo2.cliente(
+	id int primary key auto_increment, -- llave primaria tecnica
+	tipo_documento varchar(10) ,
+    numero_documento varchar(50),
+    nombre varchar(100),
+    correo_electronico varchar(100),
+    unique index documento_idx (tipo_documento ASC, numero_documento ASC),
+    UNIQUE INDEX correo_idx (correo_electronico ASC)
+);
+
 
 -- indice me ayuda a que las consultas sean mas rapidas
 
@@ -90,6 +103,123 @@ create table if not exists ejemplo2.tabla4(
 );
 
 select * from ejemplo2.tabla4 where nombre = 'pepe';
+
+-- indice compuesto me ayuda a que las consultas sean mas rapidas
+
+create table if not exists ejemplo2.tabla6(
+	tipo_documento varchar(10) ,
+    numero_documento varchar(50),
+    nombre varchar(100),
+    apellidos varchar(100),
+    correo_electronico varchar(100),
+	INDEX persona_idx (nombre ASC, apellidos ASC),-- hace que la basa de datos pese mas
+    primary key (tipo_documento, numero_documento)
+);
+
+select * from ejemplo2.tabla6 as t where t.nombre ='pepe';
+
+-- NOT NULL
+
+create table ejemplo2.tabla7(
+	id int primary key,
+    campo1 int not null
+);
+
+CREATE TABLE ejemplo2.facturas2(
+num INTEGER PRIMARY KEY,
+cantidad REAL(8,2),
+tipo_de_pago VARCHAR(30) DEFAULT 'Tarjeta'
+);
+-- unique
+
+use ejemplo2;
+CREATE TABLE coches (
+    marca VARCHAR(50),
+    tipo_vehiculo VARCHAR(50),
+    matricu VARCHAR(15) UNIQUE
+);
+
+-- PRIMARY KEY
+CREATE TABLE clientes10 (
+    num_cliente INTEGER PRIMARY KEY,
+    nombre_cliente VARCHAR(30) NOT NULL
+);
+
+-- PRIMARY KEY CON NOMBRE
+
+CREATE TABLE clientes11 (
+    num_cliente INTEGER,
+    nombre_cliente VARCHAR(30) NOT NULL,
+    CONSTRAINT claveprim PRIMARY KEY (num_cliente) -- este no sirve en la version actual 8.0.11 poner PRIMARY como nombre del contraint
+);
+
+-- FOREIGN KEY
+
+create schema ejemplo2;
+
+use ejemplo2;
+
+-- uno a muchos identificable
+
+create table tipo_documento(
+	sigla varchar(10) primary key,
+    nombre_documento varchar(100) not null,
+    estado boolean not null
+);
+
+drop table usuario;
+
+create table usuario(
+	sigla varchar(10) not null,
+	numero_documento varchar(50) not null,
+    primer_nombre varchar(100) not null,
+    segundo_nombre varchar(100),
+    primer_apellido varchar(100) not null,
+    segundo_apellido varchar(100),
+    correo_electronico varchar(100) not null unique,
+    constraint fk foreign key (sigla) references tipo_documento(sigla),
+    primary key (numero_documento, sigla)
+);
+
+-- uno a muchos no identificable
+
+create table tipo_documento(
+	sigla varchar(10) primary key,
+    nombre_documento varchar(100) not null,
+    estado boolean not null
+);
+
+drop table usuario;
+
+create table usuario(
+	sigla varchar(10) not null,
+	numero_documento varchar(50) not null,
+    primer_nombre varchar(100) not null,
+    segundo_nombre varchar(100),
+    primer_apellido varchar(100) not null,
+    segundo_apellido varchar(100),
+    correo_electronico varchar(100) not null unique,
+    constraint fk foreign key (sigla) references tipo_documento(sigla),
+    primary key ( numero_documento)
+);
+
+-- alter sirven para hace modificaciones a la extructura de las tablas
+
+-- Renombrado de tabla y gestión de columnas
+
+alter table usuario1 rename usuario;
+
+-- alter para agregar columnas
+
+alter table usuario add column ( sexo varchar(10) not null);
+
+-- alter para cambiar el nombre de una columna
+
+alter table usuario change sexo sex varchar(50);
+
+-- eliminar columna
+
+alter table usuario drop column sex;
 
 
 
