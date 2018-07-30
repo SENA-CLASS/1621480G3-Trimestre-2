@@ -1,7 +1,7 @@
 -- DDL
 create database ejemplo01;
 drop database ejemplo01;
-ALTER SCHEMA `ejemplo2`  DEFAULT CHARACTER SET cp1250  DEFAULT COLLATE cp1250_general_ci ;
+ALTER SCHEMA ejemplo2  DEFAULT CHARACTER SET cp1250  DEFAULT COLLATE cp1250_general_ci ;
 
 -- tipos de datos
 -- tynint
@@ -221,6 +221,54 @@ alter table usuario change sexo sex varchar(50);
 
 alter table usuario drop column sex;
 
+-- ejemplo de relaciones a la misma entidad
+-- no identificable
+
+CREATE TABLE categoria (
+  id int(11) NOT NULL AUTO_INCREMENT,
+  nombre_categoria varchar(45) NOT NULL,
+  categoria_id int(11) NOT NULL,
+  PRIMARY KEY (id),
+  CONSTRAINT fk_categoria_categoria FOREIGN KEY (categoria_id) REFERENCES categoria (id)
+) ;
+
+CREATE TABLE categoria2 (
+  id int(11) NOT NULL,
+  nombre_categoria varchar(45) NOT NULL,
+  categoria_id int(11) NOT NULL,
+  PRIMARY KEY (id,categoria_id),
+  CONSTRAINT fk_categoria_categoria2 FOREIGN KEY (categoria_id) REFERENCES categoria2 (id)
+);
+
+-- cascade para actualizar en cascada y eliminar en cascada
+-- -----------------------------------------------------
+-- Table mydb.tipo_documento
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS tipo_documento (
+  sigla VARCHAR(10) NOT NULL,
+  nombre_tipo_documento VARCHAR(45) NOT NULL,
+  estado TINYINT NOT NULL,
+  PRIMARY KEY (sigla))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table mydb.cliente
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS cliente (
+  numero_documento VARCHAR(20) NOT NULL,
+  tipo_documento_sigla VARCHAR(10) NOT NULL,
+  nombre VARCHAR(45) NOT NULL,
+  telefono VARCHAR(45) NULL,
+  direccion VARCHAR(45) NULL,
+  PRIMARY KEY (numero_documento, tipo_documento_sigla),
+  INDEX fk_cliente_tipo_documento_idx (tipo_documento_sigla ASC),
+  CONSTRAINT fk_cliente_tipo_documento
+    FOREIGN KEY (tipo_documento_sigla)
+    REFERENCES tipo_documento (sigla)
+    ON DELETE restrict
+    ON UPDATE cascade)
+ENGINE = InnoDB;
 
 
 
