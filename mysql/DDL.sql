@@ -272,6 +272,21 @@ ENGINE = InnoDB;
 
 
 
+create table estado_formacion(
+    id int primary key,
+    estado_formacion varchar(40),
+    unique index estado_formacion_idx (estado_formacion asc)
+);
+    
+    
+create table fase(
+	id int primary key,
+    id_proyecto int not null,
+    nombre varchar(40) not null,
+    estado varchar(40),
+	unique index fase_idx (id_proyecto asc, nombre asc),
+	constraint fk_proyecto foreign key 	(id_proyecto) references proyecto(id)
+);
 
 
 
