@@ -97,6 +97,13 @@ console.log(carro.miCarro);  // Saturn
 console.log(carro.getCarro); // Honda
 console.log(carro.especial); // Toyota
 
+var propiedadesDeNombreInusual = {
+    "": "Un string vacio",
+    "!": "Bang!"
+}
+console.log(propiedadesDeNombreInusual[""]);
+console.log(propiedadesDeNombreInusual["!"]);
+
 
 
 
