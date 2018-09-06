@@ -35,4 +35,23 @@ console.log(arreglo.sort(function (a, b) {
 console.log(arreglo.sort((a, b) => a - b)[arreglo.length - 1]);
 
 
+var arreglo5 = [1, 2, , , , , 6];
+console.log(arreglo5);
+
+
+// literales booleanos
+
+var literalVerdadero = Boolean(true);
+var primitivoVerdadero = true;
+console.log(typeof literalVerdadero);
+console.log(typeof primitivoVerdadero);
+
+if (literalVerdadero == primitivoVerdadero) {
+    console.log("son iguales");
+} else {
+    console.log("son diferentes");
+}
+
+
+
 
