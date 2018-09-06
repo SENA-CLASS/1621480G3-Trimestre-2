@@ -104,6 +104,30 @@ var propiedadesDeNombreInusual = {
 console.log(propiedadesDeNombreInusual[""]);
 console.log(propiedadesDeNombreInusual["!"]);
 
+// refencias
+
+let variableUno = 1;
+let variableDos = variableUno;
+
+variableDos = 10;
+
+console.log(variableUno);
+console.log(variableDos);
+
+// objetos se pasan por referencia
+var arreglo1 = [1, 3, 5, 2, 3, 8];
+var arreglo2 = [];
+
+for (let i = 0; i < arreglo1.length; i++) {
+    arreglo2.push(arreglo1[i]);
+}
+arreglo2.sort();
+
+console.log(arreglo1);
+console.log(arreglo2);
+
+
+
 
 
 
