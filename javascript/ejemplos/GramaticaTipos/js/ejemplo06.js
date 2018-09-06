@@ -63,4 +63,40 @@ console.log(octal);
 let decimal = 11111;
 console.log(decimal);
 
+// literal coma flotante
+let a = 5.5;
+
+// literales objetos
+
+let trasmilenio = {
+    llantas: 8,
+    color: 'rojo',
+    cantidadSillas: 100,
+    sillas: {
+        color: 'rojo',
+        material: 'plastico'
+    }
+};
+trasmilenio.marca = 'marco polo';
+console.log(trasmilenio.sillas.color);
+console.log(trasmilenio.marca);
+
+var Ventas = "Toyota";
+
+function TiposCarro(nombre) {
+    if (nombre == "Honda") {
+        return nombre;
+    } else {
+        return "Lo siento, nosotros no vendemos " + nombre + ".";
+    }
+}
+
+var carro = {miCarro: "Saturn", getCarro: TiposCarro("Renault"), especial: Ventas};
+
+console.log(carro.miCarro);  // Saturn
+console.log(carro.getCarro); // Honda
+console.log(carro.especial); // Toyota
+
+
+
 
