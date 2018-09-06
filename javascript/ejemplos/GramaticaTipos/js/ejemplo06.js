@@ -52,6 +52,15 @@ if (literalVerdadero == primitivoVerdadero) {
     console.log("son diferentes");
 }
 
+// literales enteros
 
+let hexadecimal = 0x11111;
+console.log(hexadecimal);
+let binario = 0b11111;
+console.log(binario);
+let octal = 0o11111;
+console.log(octal);
+let decimal = 11111;
+console.log(decimal);
 
 
