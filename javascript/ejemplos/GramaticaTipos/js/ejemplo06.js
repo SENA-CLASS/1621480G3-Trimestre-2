@@ -16,32 +16,23 @@ for (let i = 0; i <cafes.length ; i++) {
 var asd = new Array("Tostado Frances", "Colombiano", "Kona");
 console.log(asd);
 
+var arreglo = [1, 3, 444, 6, 88, 4, 3, 3, 1];
 
-class perro{
-     raza;
-     sexo;
-
-    constructor(raza, sexo) {
-        this._raza = raza;
-        this._sexo = sexo;
-    }
-
-    get raza() {
-        return this._raza;
-    }
-
-    set raza(value) {
-        this._raza = value;
-    }
-
-    get sexo() {
-        return this._sexo;
-    }
-
-    set sexo(value) {
-        this._sexo = value;
+// estructurado
+mayor = arreglo[0];
+for (let i = 0; i < arreglo.length; i++) {
+    if (arreglo[i] > mayor) {
+        mayor = arreglo[i];
     }
 }
+console.log(mayor);
+
+// funcional
+console.log(arreglo.sort(function (a, b) {
+    return a - b
+})[arreglo.length - 1]);
+// funcional arrow function (lambda)
+console.log(arreglo.sort((a, b) => a - b)[arreglo.length - 1]);
 
 
 
