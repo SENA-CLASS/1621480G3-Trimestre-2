@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<p id="demo">presione clic para cambiar este parrafo.</p>
+
+<button onclick="myFunction()">Try it</button>
+
+<script>
+    let i = 1;
+
+    function myFunction() {
+        if (i % 2 == 0)
+            document.getElementById("demo").innerHTML = "par " + i;
+        else
+            document.getElementById("demo").innerHTML = "impar " + i;
+        i++;
+    }
+</script>
+
+</body>
+</html>
