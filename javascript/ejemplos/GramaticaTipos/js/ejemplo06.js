@@ -127,6 +127,37 @@ console.log(arreglo1);
 console.log(arreglo2);
 
 
+// literales string
+
+let varable = "hola mundo";
+let varable2 = 'hola mundo';
+
+
+// Uso de caracteres especiales en strings
+
+console.log("una linea \n otra linea");
+
+var str = "this string is broken cross multiple lines."
+console.log(str);
+
+var home = "c:\\temp";
+
+var dir = "El lee \"La cremación de Sam McGee\" de R.W. Service.";
+console.log(dir);
+
+
+// sentencia de bloque
+let aaa = 1;
+switch (aaa) {
+    case 1 : {
+        let a = 10;
+    }
+}
+
+
+
+
+
 
 
 
