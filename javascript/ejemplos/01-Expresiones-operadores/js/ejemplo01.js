@@ -27,6 +27,7 @@
     //               10001010
     binario &= binario2;
     console.log(binario);
-
-
 })();
+
+
+
